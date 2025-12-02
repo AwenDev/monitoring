@@ -1,0 +1,29 @@
+groups:
+  - name: general-rules
+    rules:
+      - alert: TestAlertEmail
+        expr: up == 1
+        for: 0m
+        labels:
+          severity: info
+        annotations:
+          summary: "Alerta de prueba"
+          description: "Alerta de prueba para comprobar el envío de correos."
+
+      - alert: LXCDown
+        expr: up{job="lxc-dokuwiki"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Contenedor LXC Dokuwiki caído"
+          description: "El contenedor lxc-dokuwiki no responde a Prometheus"
+
+      - alert: InstanceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Instancia {{ $labels.instance }} caída"
+          description: "El job {{ $labels.job }} con instancia {{ $labels.instance }} no responde desde hace más de 1 minuto."

@@ -1,0 +1,15 @@
+global:
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: '86monitoring@gmail.com'
+  smtp_auth_username: '86monitoring@gmail.com'
+  smtp_auth_password: 'mxjb dhow sfjj wmnj'
+  smtp_require_tls: true
+
+route:
+  receiver: 'email-alerts'
+
+receivers:
+  - name: 'email-alerts'
+    email_configs:
+      - to: '86monitoring@gmail.com'
+        send_resolved: true
